@@ -1,0 +1,21 @@
+<form class="example-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>password</mat-label>
+      <input matInput placeholder="password" formControlName="password" >
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>confirm password</mat-label>
+        <input matInput placeholder="confirm password" formControlName="confirmPassword" id="confirmPassword" required>
+      </mat-form-field>
+    <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)"
+    class="alert alert-danger">
+
+  <div *ngIf="confirmPassword?.errors?.['mismatch']">
+    Password not matching
+  </div>
+  <div *ngIf="confirmPassword?.errors?.['required']">
+    Password required
+  </div>
+</div> 
+      <button type="submit" [disabled]="!signupForm.valid">Submit</button>
+  </form>
